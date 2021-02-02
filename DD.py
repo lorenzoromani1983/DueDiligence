@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-from bs4 import BeautifulSoup
 from colorama import init, Fore, Back, Style
 from KW import *
 from newspaper import Article
