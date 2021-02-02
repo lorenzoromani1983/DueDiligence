@@ -35,8 +35,6 @@ by Lorenzo Romani - @lorenzoromani
 #put your Zenserp tokens in this list:
 tokens = ['PASTE YOUR TOKEN(S) HERE']
           
-
-
 #this loop helps selecting the token with most queries available.  
 remainingRequests = []
 for token in tokens:
@@ -56,7 +54,7 @@ for idx in indices:
     
 zenTokenIdx = int(input("Specify the token you want to use (ITALIAN: 21 queries; ENGLISH,SPANISH: 15 queries needed): "))
 
-#if you have a paid zenserp plan, you can delete from line 38 to line 59 and add another line like this:
+#if you have a paid zenserp plan, you can delete from line 38 to line 55 and add another line like this:
 # zenToken = "PUT YOUR TOKEN HERE" instead of the following:
 
 zenToken = tokens[zenTokenIdx]
