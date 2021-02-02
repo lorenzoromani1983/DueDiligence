@@ -1,0 +1,5 @@
+newspaper3k
+more-itertools
+requests
+urllib3
+colorama
