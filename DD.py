@@ -47,6 +47,9 @@ for token in tokens:
     if 'remaining_requests' in left:
         num = left['remaining_requests']
         remainingRequests.append(num)
+    if not 'remaining_requests' in left:
+        num = 0
+        remainingRequests.append(num)
 indices = [i for i, x in enumerate(remainingRequests)]
 for idx in indices:
     print("Token n. "+str(idx)+": "+str(remainingRequests[idx])+" queries left"+"\n")
