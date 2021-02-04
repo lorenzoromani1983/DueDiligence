@@ -186,10 +186,11 @@ def search(baseurlLang, location, zenToken):
                         for row in data['organic']:
                             if 'url' in row:
                                 link = row['url']
-                                snippet = row['description']                          
-                                if link and snippet:
-                                    snippets.append(snippet)
-                                    sourcesList.append(link)
+                            if 'description' in row:
+                                snippet = row['description']                       
+                            if link and snippet:
+                                snippets.append(snippet)
+                                sourcesList.append(link)
                     if not 'organic' in data:
                         print("[!] Results not available or token expired")                                                       
             print("\n")
@@ -220,10 +221,11 @@ def search(baseurlLang, location, zenToken):
                         for row in data['organic']:
                             if 'url' in row:
                                 link = row['url']
-                                snippet = row['description']                            
-                                if link and snippet:
-                                    snippets.append(snippet)
-                                    sourcesList.append(link)                                
+                            if 'description' in row:
+                                snippet = row['description']                       
+                            if link and snippet:
+                                snippets.append(snippet)
+                                sourcesList.append(link)                               
                     if not 'organic' in data:
                         print("[!] Results not available or token expired")                               
             for article in sourcesList:
