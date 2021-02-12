@@ -347,7 +347,7 @@ while True:
     elif analisys == "n":
         print(Fore.RED + "ANALYSIS ABORTED. SOURCES LIST SAVED")
         break
-    elif analisys != "y" or analisi != "n":
+    elif analisys != "y" or analisys != "n":
         print(Fore.RED + "Please say 'y' or 'n'")
     else:
         break    
