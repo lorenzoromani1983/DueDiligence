@@ -10,7 +10,8 @@ import os
 import re
 import requests
 import urllib3
-
+import pandas as pd
+import tabulate
 
 os.environ['no_proxy'] = '*'
 init(convert=True)
