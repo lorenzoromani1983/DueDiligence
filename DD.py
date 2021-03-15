@@ -321,7 +321,13 @@ if lang == "en":
     search(base_url_en, location_usa, zenToken)
     
 if lang == "es":
-    search(base_url_es, location_es, zenToken)    
+    search(base_url_es, location_es, zenToken)
+
+def printResults(filename):
+    df = pd.read_csv(filename, delimiter = "|", error_bad_lines=False, encoding="Latin1")    
+    sorteddb = df.sort_values(by=['Risk Score'], ascending=False)    
+    headers = ['Risk Score','Total Issues','URL']    
+    print(tabulate.tabulate(sorteddb[['Risk Score','Total Issues','URL']], tablefmt='fancy_grid',showindex=False, headers=headers)) 
                      
 while True:
     print(Fore.GREEN + "       ")
@@ -331,18 +337,21 @@ while True:
         print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
         print("\n")
         __init__(kw_negative_it)
+        printResults(file)
         break
     elif analisys == "y" and lang == "en":
         print("\n")
         print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
         print("\n")
         __init__(kw_negative_en)
+        printResults(file)
         break
     elif analisys == "y" and lang == "es":
         print("\n")
         print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
         print("\n")
         __init__(kw_negative_es)
+        printResults(file)
         break    
     elif analisys == "n":
         print(Fore.RED + "ANALYSIS ABORTED. SOURCES LIST SAVED")
