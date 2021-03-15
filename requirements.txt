@@ -3,3 +3,5 @@ more-itertools
 requests
 urllib3
 colorama
+pandas
+tabulate
