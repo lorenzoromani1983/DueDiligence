@@ -330,35 +330,33 @@ def printResults(filename):
     headers = ['Risk Score','Total Issues','URL']    
     print(tabulate.tabulate(sorteddb[['Risk Score','Total Issues','URL']], tablefmt='fancy_grid',showindex=False, headers=headers)) 
                      
-while True:
-    print(Fore.GREEN + "       ")
-    analisys = input("Do you want to analyze the collected sources? y/n: ")
-    if analisys == "y" and lang == "it":
-        print("\n")
-        print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
-        print("\n")
-        __init__(kw_negative_it)
-        printResults(file)
-        break
-    if analisys == "y" and lang == "en":
-        print("\n")
-        print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
-        print("\n")
-        __init__(kw_negative_en)
-        printResults(file)
-        break
-    if analisys == "y" and lang == "es":
-        print("\n")
-        print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
-        print("\n")
-        __init__(kw_negative_es)
-        printResults(file)
-        break    
-    if analisys == "n":
-        print(Fore.RED + "ANALYSIS ABORTED. SOURCES LIST SAVED")
-        break
-    if analisys != "y" or analisys != "n":
-        print(Fore.RED + "Please say 'y' or 'n'")
-    else:
-        break    
+if lang:
+    if lang == 'it':
+        kwset = kw_negative_it
+    if lang == 'en':
+        kwset = kw_negative_en
+    if lang == 'ar':
+        kwset = kw_negative_ar
+    if lang == 'es':
+        kwset = kw_negative_es
+             
+def go(keywordSet):     
+    while True:
+        print(Fore.GREEN + "       ")
+        analysis = input("Do you want to analyse the collected sources? y/n: ")
+        if analysis == 'y':
+            print("\n")
+            print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
+            print("\n")
+            __init__(keywordSet)
+            printResults(file)
+            break
+        if analysis == "n":
+            print(Fore.RED + "ANALYSIS ABORTED. SOURCES LIST SAVED")
+            break
+        if analysis != "y" or analysis != "n":
+            print(Fore.RED + "Please say 'y' or 'n'")
+            continue 
+
+go(kwset)
 
