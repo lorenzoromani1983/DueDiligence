@@ -340,24 +340,24 @@ while True:
         __init__(kw_negative_it)
         printResults(file)
         break
-    elif analisys == "y" and lang == "en":
+    if analisys == "y" and lang == "en":
         print("\n")
         print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
         print("\n")
         __init__(kw_negative_en)
         printResults(file)
         break
-    elif analisys == "y" and lang == "es":
+    if analisys == "y" and lang == "es":
         print("\n")
         print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
         print("\n")
         __init__(kw_negative_es)
         printResults(file)
         break    
-    elif analisys == "n":
+    if analisys == "n":
         print(Fore.RED + "ANALYSIS ABORTED. SOURCES LIST SAVED")
         break
-    elif analisys != "y" or analisys != "n":
+    if analisys != "y" or analisys != "n":
         print(Fore.RED + "Please say 'y' or 'n'")
     else:
         break    
