@@ -335,8 +335,6 @@ if lang:
         kwset = kw_negative_it
     if lang == 'en':
         kwset = kw_negative_en
-    if lang == 'ar':
-        kwset = kw_negative_ar
     if lang == 'es':
         kwset = kw_negative_es
              
