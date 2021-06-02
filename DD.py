@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from colorama import init, Fore, Back, Style
+from colorama import init, Fore, Style
+init()
 from KW import *
 from newspaper import Article
 
@@ -19,22 +20,23 @@ init(convert=True)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 print(Fore.YELLOW + """
-  ______   __    __  ________      _______   ______  __        ______   ______   ________  __    __   ______   ________
-/       \ /  |  /  |/        |    /       \ /      |/  |      /      | /      \ /        |/  \  /  | /      \ /        |
-$$$$$$$  |$$ |  $$ |$$$$$$$$/     $$$$$$$  |$$$$$$/ $$ |      $$$$$$/ /$$$$$$  |$$$$$$$$/ $$  \ $$ |/$$$$$$  |$$$$$$$$/
-$$ |  $$ |$$ |  $$ |$$ |__        $$ |  $$ |  $$ |  $$ |        $$ |  $$ | _$$/ $$ |__    $$$  \$$ |$$ |  $$/ $$ |__
-$$ |  $$ |$$ |  $$ |$$    |       $$ |  $$ |  $$ |  $$ |        $$ |  $$ |/    |$$    |   $$$$  $$ |$$ |      $$    |
-$$ |  $$ |$$ |  $$ |$$$$$/        $$ |  $$ |  $$ |  $$ |        $$ |  $$ |$$$$ |$$$$$/    $$ $$ $$ |$$ |   __ $$$$$/
-$$ |__$$ |$$ \__$$ |$$ |_____     $$ |__$$ | _$$ |_ $$ |_____  _$$ |_ $$ \__$$ |$$ |_____ $$ |$$$$ |$$ \__/  |$$ |_____
-$$    $$/ $$    $$/ $$       |    $$    $$/ / $$   |$$       |/ $$   |$$    $$/ $$       |$$ | $$$ |$$    $$/ $$       |
-$$$$$$$/   $$$$$$/  $$$$$$$$/     $$$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$/  $$$$$$/  $$$$$$$$/ $$/   $$/  $$$$$$/  $$$$$$$$/
 
-by Lorenzo Romani - @lorenzoromani
 
-""")
+######                   ######                                                
+#     # #    # ######    #     # # #      #  ####  ###### #    #  ####  ###### 
+#     # #    # #         #     # # #      # #    # #      ##   # #    # #      
+#     # #    # #####     #     # # #      # #      #####  # #  # #      #####  
+#     # #    # #         #     # # #      # #  ### #      #  # # #      #      
+#     # #    # #         #     # # #      # #    # #      #   ## #    # #      
+######   ####  ######    ######  # ###### #  ####  ###### #    #  ####  ###### 
+                                                                               
+              
+by Lorenzo Romani - twitter.com/lorenzoromani
+
+""" + Style.RESET_ALL)
 
 #put your Zenserp tokens in this list:
-tokens = ['PASTE YOUR TOKEN(S) HERE']
+tokens = ['8ef2c710-b823-11eb-82b9-7db7e7327339']
           
 #this loop helps selecting the token with most queries available.  
 remainingRequests = []
@@ -46,9 +48,10 @@ for token in tokens:
     if 'remaining_requests' in left:
         num = left['remaining_requests']
         remainingRequests.append(num)
-    if not 'remaining_requests' in left:
+    if 'remaining_requests' not in left:
         num = 0
         remainingRequests.append(num)
+            
 indices = [i for i, x in enumerate(remainingRequests)]
 for idx in indices:
     print("Token n. "+str(idx)+": "+str(remainingRequests[idx])+" queries left"+"\n")
@@ -73,29 +76,28 @@ while True:
         for alternativeName in alternativeNamesList:
             entityNames.append(alternativeName)
     if not counterparty:
-        print(Fore.RED + "You need to specify an entity name!")
+        print(Fore.RED + "You need to specify an entity name!" + Style.RESET_ALL)
     else:
         break
 
 #now, we select the language for our search. Currently only Italian, English and Spanish available
 while True:
     lang = input("Please define the search language (en/it/es): ")
-    if any([lang == "en", lang == "it", lang=="es"]):
-        print(Fore.GREEN +"Ok! Will search in the defined language")
+    check = any([lang == "en", lang == "it", lang=="es"])
+    if check == True:
+        print(Fore.GREEN +"Ok! Will search in the defined language" + Style.RESET_ALL)
         break
-    elif any([lang != "en", lang != "it", lang!= "es"]):
-        print(Fore.RED +"Language not supported (currently)!")
+    if check == False:
+        print(Fore.RED +"Language not supported (currently)!"+ Style.RESET_ALL)
         continue
     else:
         break
 
 #let's define the confidence interval for our adverse keywords to be considered. If you do not want to skip any news, put an high number, ex: 4000
 while True:
-    proximity = int(input("Please define a proximity interval (1-4999)..: "))
-    if proximity < 1:
-        print(Fore.RED + "Please choose a number between 1 and 4999")
-    elif proximity > 5000:
-        print(Fore.RED + "Please choose a number between 1 and 4999")
+    proximity = int(input("Please define a proximity interval (1-5000)..: "))
+    if proximity not in range(1,5001):
+        print(Fore.RED + "Please choose a number between 1 and 5000"+ Style.RESET_ALL)
     else:
         break
     
@@ -194,7 +196,7 @@ def search(baseurlLang, location, zenToken):
                     if not 'organic' in data:
                         print("[!] Results not available or token expired")                                                       
             print("\n")
-            print(Fore.WHITE +"""*** SOURCES LIST SAVED IN SCRIPT'S DIRECTORY ***""")
+            print(Fore.WHITE +"""*** SOURCES LIST SAVED IN SCRIPT'S DIRECTORY ***"""+ Style.RESET_ALL)
             print("\n")
             for article in sourcesList:
                 position = sourcesList.index(article)                    
@@ -233,7 +235,7 @@ def search(baseurlLang, location, zenToken):
                 rows = [article]
                 writer.writerow(rows)
             print("\n")
-            print(Fore.WHITE +"""*** SOURCES LIST SAVED IN SCRIPT'S DIRECTORY ***""")
+            print(Fore.WHITE +"""*** SOURCES LIST SAVED IN SCRIPT'S DIRECTORY ***"""+ Style.RESET_ALL)
             print("\n")                
                  
    
@@ -248,11 +250,11 @@ def __init__(issueLang):
                 try:
                     check = requests.head(url, verify=False, timeout=10, headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36',"Upgrade-Insecure-Requests": "1","DNT": "1","Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Language": "en-US,en;q=0.5","Accept-Encoding": "gzip, deflate"})
                 except Exception:
-                    print(Fore.RED + "[!] SKIPPED: {URL}".format(URL=url))                  
+                    print(Fore.RED + "[!] SKIPPED: {URL}".format(URL=url)+ Style.RESET_ALL)                  
                     continue
                 headers_check = str(check.headers)
                 if headers_check and not re.search("text/html", headers_check, flags=re.IGNORECASE):
-                    print(Fore.RED + "[!] SKIPPED: {URL}".format(URL=url))                   
+                    print(Fore.RED + "[!] SKIPPED: {URL}".format(URL=url)+ Style.RESET_ALL)                   
                     continue
                 if headers_check and re.search("text/html", headers_check, flags=re.IGNORECASE):
                     try:                    
@@ -300,12 +302,12 @@ def __init__(issueLang):
                                     try:
                                         if int(min(distances)) <= int(proximity):
                                             min_distance_count.append(int(min(distances)))
-                                            print(Fore.GREEN+"[*] "+Fore.YELLOW+"{item} ".format(item=url)+Fore.CYAN+"> {issue}, ".format(issue=issue_token)+Fore.RED+"{distance}".format(distance=min(distances)))
+                                            print(Fore.GREEN+"[*] "+Fore.YELLOW+"{item} ".format(item=url)+Fore.CYAN+"> {issue}, ".format(issue=issue_token)+Fore.RED+"{distance}".format(distance=min(distances))+ Style.RESET_ALL)
                                             min_distance_issues.append(issue)
                                             rows = [url, issue_token, min(distances), snippet, total]
                                             writer.writerow(rows)          
                                     except ValueError:
-                                        print(Fore.RED + "[!] PARTIAL MATCH: {URL} > {issue}".format(URL=url, issue=issue_token))
+                                        print(Fore.RED + "[!] PARTIAL MATCH: {URL} > {issue}".format(URL=url, issue=issue_token)+ Style.RESET_ALL)
                                         rows = [url, issue_token, "CHECK MANUALLY", snippet, total]
                                         writer.writerow(rows)
                                         continue        
@@ -340,21 +342,23 @@ if lang:
              
 def go(keywordSet):     
     while True:
-        print(Fore.GREEN + "       ")
+        print("       ")
         analysis = input("Do you want to analyse the collected sources? y/n: ")
         if analysis == 'y':
             print("\n")
-            print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList)))
+            print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList))+ Style.RESET_ALL)
             print("\n")
             __init__(keywordSet)
             printResults(file)
             break
         if analysis == "n":
-            print(Fore.RED + "ANALYSIS ABORTED. SOURCES LIST SAVED")
-            break
-        if analysis != "y" or analysis != "n":
-            print(Fore.RED + "Please say 'y' or 'n'")
+            print(Fore.RED + "ANALYSIS ABORTED. SOURCES LIST SAVED"+ Style.RESET_ALL)
+        i    break
+        elif analysis != 'y' or analysis != 'n':
+            print(Fore.RED + "Please say 'y' or 'n'"+ Style.RESET_ALL)
             continue 
 
 go(kwset)
+
+
 
