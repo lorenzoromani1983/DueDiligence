@@ -353,7 +353,7 @@ def go(keywordSet):
             break
         if analysis == "n":
             print(Fore.RED + "ANALYSIS ABORTED. SOURCES LIST SAVED"+ Style.RESET_ALL)
-        i    break
+            break
         elif analysis != 'y' or analysis != 'n':
             print(Fore.RED + "Please say 'y' or 'n'"+ Style.RESET_ALL)
             continue 
