@@ -3,6 +3,7 @@ from colorama import init, Fore, Style
 init()
 from KW import *
 from newspaper import Article
+from newspaper import Config
 
 import csv
 import itertools
@@ -13,6 +14,7 @@ import requests
 import urllib3
 import pandas as pd
 import tabulate
+import time
 
 os.environ['no_proxy'] = '*'
 init(convert=True)
@@ -36,7 +38,7 @@ by Lorenzo Romani - twitter.com/lorenzoromani
 """ + Style.RESET_ALL)
 
 #put your Zenserp tokens in this list:
-tokens = ['8ef2c710-b823-11eb-82b9-7db7e7327339']
+tokens = ['8ef2c710-b823-11eb-82b9-7db7e7327339','bb02cf20-410c-11eb-b0e2-4b68e95bc29b']
           
 #this loop helps selecting the token with most queries available.  
 remainingRequests = []
@@ -161,7 +163,10 @@ path = os.path.dirname(os.path.abspath(__file__))
 file = os.path.join(path, counterparty_token+"_REPORT"+".csv")
 sources_file = os.path.join(path, counterparty_token+"_SOURCES"+".csv")
 
-#lets start the main function. It searches google via the zenserp api for adverse media
+config = Config()
+config.request_timeout = 60
+
+#lets start the search function. It searches google via the zenserp api for adverse media
 
 def search(baseurlLang, location, zenToken):
     startPoint = [0, 100, 200]
@@ -237,10 +242,10 @@ def search(baseurlLang, location, zenToken):
             print("\n")
             print(Fore.WHITE +"""*** SOURCES LIST SAVED IN SCRIPT'S DIRECTORY ***"""+ Style.RESET_ALL)
             print("\n")                
-                 
-   
+               
+ 
 #this function finds out if each news/url might contain negative allegations and defines a reputation risk score for each news, based on our list of keywords
-def __init__(issueLang):
+def evaluateSource(issueLang):
     with open(file,'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter ="|" )
         header = ['URL','Issue','Distance','Snippet','N. Mentions','Total Issues', 'Risk Score']
@@ -259,7 +264,7 @@ def __init__(issueLang):
                 if headers_check and re.search("text/html", headers_check, flags=re.IGNORECASE):
                     try:                    
                         print(" >>> Processing: " + url)
-                        article = Article(url)
+                        article = Article(url, config=config)
                         article.download()
                         article.parse()
                         text = article.text
@@ -340,15 +345,15 @@ if lang:
     if lang == 'es':
         kwset = kw_negative_es
              
-def go(keywordSet):     
+def run(keywordSet):     
     while True:
-        print("       ")
-        analysis = input("Do you want to analyse the collected sources? y/n: ")
+        print("\n")
+        analysis = input("Do you want to evaluate the collected sources? y/n: ")
         if analysis == 'y':
             print("\n")
             print(Fore.GREEN + """*** ANALYSIS OF {num} SOURCES ***""".format(num=len(sourcesList))+ Style.RESET_ALL)
             print("\n")
-            __init__(keywordSet)
+            evaluateSource(keywordSet)
             printResults(file)
             break
         if analysis == "n":
@@ -358,7 +363,4 @@ def go(keywordSet):
             print(Fore.RED + "Please say 'y' or 'n'"+ Style.RESET_ALL)
             continue 
 
-go(kwset)
-
-
-
+run(kwset)
