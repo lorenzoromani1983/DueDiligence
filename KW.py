@@ -12,14 +12,14 @@ kw_it4 = """ AND prigione OR carcere OR domiciliari OR detenzione OR reclusione 
 
 kw_it5 = """ AND 'a giudizio' OR condanna OR condannato OR condannati OR condannate OR sentenza OR prescrizione OR prescritto OR prescritti OR assolto OR assolti OR assolta OR assoluzione -filetype:pdf -filetype:doc -filetype:xls -filetype:docx"""
 
-kw_it6 = """ AND prosciolto OR proscioglimento OR prosciolti OR prosciolta OR processo OR processato OR processati OR scagionato OR scagionati -filetype:pdf -filetype:doc -filetype:xls -filetype:docx"""
+kw_it6 = """ AND prosciolto OR proscioglimento OR prosciolti OR prosciolta OR processo OR processato OR processati OR scagionato OR scagionati OR fermato OR fermati -filetype:pdf -filetype:doc -filetype:xls -filetype:docx"""
 
 kw_it7 = """ AND truffa OR frode OR crimine OR crimini OR criminale OR criminali OR tangente OR tangenti OR mazzetta OR mazzette OR corrompere OR corrotto OR corruzione OR riciclaggio OR 'evasione fiscale' OR falsificazione OR illecito OR illeciti"""
 
 kw_negative_it = ['accusa', 'accuse', 'anticorruzione', 'antifrode', 'antimafia', 'antiriciclaggio', 'appello', 'arrestata', 'arrestati', 'arrestato', 'arresti', 'arresti domiciliari', 'arresto', 'avvocati', 'avvocato', 
                   'bustarella', 'bustarelle', 'camorra', 'camorrista', 'camorriste', 'camorristi', 'carabiniere', 'carabinieri', 'carcere', 'cassazione', 'cautelare', 'cautelari', 'clan', 'coimputati', 'coimputato', 
                   'coindagati', 'coindagato', 'concussione', 'condanna definitiva', 'condannate', 'condannati', 'condannato', 'confessione', 'corrompere', 'corrotto', 'corruttore', 'corruzione', 'delinquente', 'delinquenti', 
-                  'delinquere', 'deposizione', 'detenzione', 'dibattimento', 'falsificazione', 'fascicoli', 'fascicolo', 'fiamme gialle', 'finanziamento illecito', 'finanza', 'frode', 'frode fiscale', 'frodi', 'gdf', 'gip', 'giudicato', 
+                  'delinquere', 'deposizione', 'detenzione', 'dibattimento', 'falsificazione', 'fascicoli', 'fascicolo', 'fermato','fermati','fermata','fiamme gialle', 'finanziamento illecito', 'finanza', 'frode', 'frode fiscale', 'frodi', 'gdf', 'gip', 'giudicato', 
                   'guardia di finanza', 'gup', 'imputati', 'imputato', 'inchiesta', 'inchieste', 'indagata', 'indagate', 'indagati', 'indagato', 'indagine', 'indagini', 'indagini preliminari', 'intercettazione', 
                   'intercettazioni', 'interrogata', 'interrogato', 'interrogatori', 'interrogatorio', 'investigatore', 'investigatori', 'investigazione', 'mafia', 'mafiosa', 'mafiose', 'mafiosi', 'mafioso', 'magistrati', 
                   'magistrato', 'manette', 'mazzetta', 'mazzette', 'ndrangheta', 'ndranghetista', 'ndranghetisti', 'ndrina', 'ndrine', 'offshore', 'operazione', 'peculato', 'penale', 'penali', 'penalista', 'penalisti', 
