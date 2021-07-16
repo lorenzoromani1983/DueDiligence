@@ -178,7 +178,9 @@ def search(baseurlLang, location, zenToken):
             for point in startPoint:
                 for keyword in keywords:                   
                     newKw = counterparty+" "+kwDis
-                    print("[*] Searching: "+newKw+keyword)                                                     
+                    print('\n')
+                    print("[*] Searching: "+newKw+keyword)
+                    print('\n')
                     params = (
                        ("q",newKw+keyword),
                        ("device","desktop"),
