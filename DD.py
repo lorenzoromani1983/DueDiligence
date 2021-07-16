@@ -37,8 +37,8 @@ by Lorenzo Romani - twitter.com/lorenzoromani
 
 """ + Style.RESET_ALL)
 
-#put your Zenserp tokens in this list:
-tokens = ['8ef2c710-b823-11eb-82b9-7db7e7327339','bb02cf20-410c-11eb-b0e2-4b68e95bc29b']
+#put your Zenserp tokens in this list like:
+tokens = ['8ef2c710-b883-11eb-82b9-7dc7e7325539','bd02cf20-410c-11eb-b1e2-4c68445bc29b'] #you can add as many as you want
           
 #this loop helps selecting the token with most queries available.  
 remainingRequests = []
