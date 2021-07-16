@@ -136,7 +136,6 @@ if lang == "es":
 
 
 sourcesList = []
-snippets = []
 
 #here we define some variables for the zenserp api. for details, check the api reference
 
@@ -196,7 +195,6 @@ def search(baseurlLang, location, zenToken):
                                 link = row['url']
                                 snippet = row['description']
                                 if link and snippet:
-                                    snippets.append(snippet)
                                     sourcesList.append(link)
                     if not 'organic' in data:
                         print("[!] Results not available or token expired")                                                       
@@ -230,7 +228,6 @@ def search(baseurlLang, location, zenToken):
                                 link = row['url']
                                 snippet = row['description']
                                 if link and snippet:
-                                    snippets.append(snippet)
                                     sourcesList.append(link)                               
                     if not 'organic' in data:
                         print("[!] Results not available or token expired")                               
